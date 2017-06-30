@@ -1,4 +1,3 @@
-
 var request = new XMLHttpRequest();
 request.open("GET", "https://us.api.battle.net/wow/realm/status?locale=en_US&apikey=pmqd9mhcmpek2zfdfnu975ht2rbxuwa7", false);
 request.send();
