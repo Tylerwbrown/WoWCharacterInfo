@@ -9,6 +9,6 @@ module UrlHelper
   end
 
   def base_render_url
-    "https://render-us.worldofwarcraft.com/"
+    "https://render-us.worldofwarcraft.com/character/"
   end
 end
