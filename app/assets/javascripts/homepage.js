@@ -19,7 +19,7 @@ function handleRequest(url, callback) {
 }
 
 function realmStatusRequestResponse(responseJSON) {
-  realmNames = JSON.parse(responseJSON).realms.map(function(value, index) {
+  var realmNames = JSON.parse(responseJSON).realms.map(function(value, index) {
     return value['name']
   });
 
@@ -28,8 +28,6 @@ function realmStatusRequestResponse(responseJSON) {
       source: function(request, response) {
         var results = $.ui.autocomplete.filter(realmNames, request.term)
         response(results.slice(0, 5))
-
-        alert(realmNames)
       }
     });
   });
@@ -39,7 +37,7 @@ function realmStatusRequestResponse(responseJSON) {
 function characterRequestResponse(responseJSON) {
   alert(responseJSON['level'])
 }
-realmStatusURL = "https://us.api.battle.net/wow/realm/status?locale=en_US&apikey=pmqd9mhcmpek2zfdfnu975ht2rbxuwa7"
+var realmStatusURL = "https://us.api.battle.net/wow/realm/status?locale=en_US&apikey=pmqd9mhcmpek2zfdfnu975ht2rbxuwa7"
 handleRequest(realmStatusURL, realmStatusRequestResponse)
 
 $(function(){
