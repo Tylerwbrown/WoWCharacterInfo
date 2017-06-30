@@ -23,39 +23,44 @@
 }
 
 .characterIcon {
-  background-color: rgb(0,0,0);
   top: 10px;
   left: 10px;
   border-radius: 100%;
   position: absolute;
-  width: 45px;
-  height: 45px;
+  width: 84px;
+  height: 84px;
   animation-name: characterCreation;
-  animation-duration: 1.5s;
+  animation-duration: 1s;
   animation-timing-function:linear;
+  background-image: url("http://render-us.worldofwarcraft.com/character/bleeding-hollow/201/155844553-avatar.jpg");
+  cursor: pointer;
 }
 
-
+.characterOpen {
+  animation-name: characterOpen;
+  animation-duration: 20s;
+  animation-timing-function: linear;
+}
 
 @keyframes characterCreation{
   0%{
 		left:100%;
-		transform: scale(1, 1);
+		transform: scale(1, 0);
 	}
 
   20% {
     left: 75%;
-    transform: scale(1, .50)
+    transform: scale(1, .25)
   }
 
   40% {
     left: 50%;
-    transform: scale(1, 0)
+    transform: scale(1, .5)
   }
 
   60% {
     left: 25%;
-    transform: scale(1, .50);
+    transform: scale(1, .75);
   }
 
   80% {
@@ -64,7 +69,7 @@
   }
 
   90% {
-    left: -9px;
+    left: -17px;
     transform: scale(.8, 1);
   }
 
@@ -74,8 +79,23 @@
 	}
 }
 
-@keyframes characterFound {
+@keyframes characterOpen {
   0% {
+    top: 10px;
+    left: 10px;
+  }
 
+
+
+  80% {
+    width: 100%;
+    height: 100%;
+    background-image: url("http://render-us.worldofwarcraft.com/character/bleeding-hollow/201/155844553-main.jpg");
+  }
+
+  100% {
+    width: 100%;
+    height: 100%;
+    background-image: url("http://render-us.worldofwarcraft.com/character/bleeding-hollow/201/155844553-main.jpg");
   }
 }
