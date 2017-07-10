@@ -1,6 +1,40 @@
 function characterThumbnailPictureURL(thumbnail) { return "http://render-us.worldofwarcraft.com/character/"  + thumbnail }
 var realmStatusURL = "https://us.api.battle.net/wow/realm/status?locale=en_US&apikey=pmqd9mhcmpek2zfdfnu975ht2rbxuwa7"
 
+function createCharacterIcon(data) {
+  icon = document.createElement('div');
+  icon.className = 'character-icon';
+  icon.style = 'background-image: url("' + characterThumbnailPictureURL(data.thumbnail) + '")';
+  document.querySelector('#character-creation-container').appendChild(icon);
+
+  icon.addEventListener('click', function() {
+    openCharacterModal(data)
+  });
+}
+
+function openCharacterModal(data) {
+  var race = {
+    "Human": 1, "Orc": 2, "Dwarf": 3, "Night Elf": 4, "Undead": 5, "Tauren": 6, "Gnome": 7, "Troll": 8,
+    "Goblin": 9, "Blood Elf": 10, "Draenei": 11, "Worgen": 22, "Pandaren": 24, "Pandaren": 25, "Pandaren": 26,
+  };
+
+  var klass = {
+    "Warrior": 1, "Paladin": 2, "Hunter": 3, "Rogue": 4, "Priest": 5, "Death Knight": 6, "Shaman": 7,
+    "Mage": 8, "Warlock": 9, "Monk": 10, "Druid": 11, "Demon Hunter": 12
+  };
+
+  $('#character-modal-content').find('.header').text(data['name']);
+
+  $('#modal-data-collection').find('#race').find('.content').text(_.invert(race)[data['race']])
+  $('#modal-data-collection').find('#class').find('.content').text(_.invert(klass)[data['class']])
+  
+  $.each(['level', 'gender', 'achievementPoints'], function(index, value) {
+    $('#modal-data-collection').find('#' + value).find('.content').text(data[value])
+  });
+
+  $('#character-modal').modal('open')
+}
+
 $(function() {
   $("input.autocomplete").autocomplete({
     source: function(request, response) {
@@ -14,12 +48,12 @@ $(function() {
   });
 
   $("#search-for-character").click(function() {
-    var realm = $("input#realm-name").val()
-    var characterName = $("input#character-name").val()
-    var characterRequestURL = "https://us.api.battle.net/wow/character/" + realm + "/" + characterName + "?locale=en_US&apikey=pmqd9mhcmpek2zfdfnu975ht2rbxuwa7"
+    var realm = $("input#realm-name").val();
+    var characterName = $("input#character-name").val();
+    var characterRequestURL = "https://us.api.battle.net/wow/character/" + realm + "/" + characterName + "?locale=en_US&apikey=pmqd9mhcmpek2zfdfnu975ht2rbxuwa7";
 
     $.getJSON(characterRequestURL, function(data) {
-      $("#character-creation-container").html("<div class='character-icon' style='background-image: url(\"" + characterThumbnailPictureURL(data.thumbnail) + "\")'></div>")
+      createCharacterIcon(data)
     })
   });
 });

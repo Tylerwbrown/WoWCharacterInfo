@@ -13,8 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require underscore
 //= require_tree .
 
 $(document).ready(function() {
     $('select').material_select();
+    $('.modal').modal();
 });

@@ -1,7 +1,25 @@
-<div class="fullPageContainer row fullPageImage verticalCenter" style="background-image:url(/assets/main-background.png)">
+<div class="fullPageContainer row verticalCenter" style="background-image:url(/assets/main-background.png)">
   <div id="character-creation-container"></div>
+  <div class="row"></div>
   <div>
     <div class="col s1"></div>
     <form class="col s5 l4"><%= render partial: 'search_params' %></form>
+  </div>
+  <div class="row"></div>
+</div>
+
+<div id="character-modal" class="modal">
+  <div id="character-modal-content" class="modal-content">
+    <h4 class="header">Character Name</h4>
+    <ul id="modal-data-collection">
+      <li id="level" class="collection-item"><strong>Level</strong> <span class="content"></span></li>
+      <li id="class" class="collection-item"><strong>Class</strong> <span class="content"></span></li>
+      <li id="race" class="collection-item"><strong>Race</strong> <span class="content"></span></li>
+      <li id="gender" class="collection-item"><strong>Gender</strong> <span class="content"></span></li>
+      <li id="achievementPoints" class="collection-item"><strong>Achievement Points</strong> <span class="content"></span></li>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Go to full character sheet</a>
   </div>
 </div>
